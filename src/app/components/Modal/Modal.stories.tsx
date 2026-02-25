@@ -2,6 +2,8 @@ import { useState } from "react";
 
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
+import { Button } from "@app/components";
+
 import Modal from "./Modal";
 
 /**
@@ -80,12 +82,7 @@ const ModalWithTrigger = ({
 
   return (
     <>
-      <button
-        type="button"
-        onClick={() => setIsShow(true)}
-        className="rounded-lg bg-blue-500 px-4 py-2 text-white hover:bg-blue-600">
-        모달 열기
-      </button>
+      <Button onClick={() => setIsShow(true)}>모달 열기</Button>
       <Modal
         isShow={isShow}
         onClose={() => setIsShow(false)}
