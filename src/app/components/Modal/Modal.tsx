@@ -1,5 +1,7 @@
 import { AnimatePresence, motion } from "motion/react"
 
+import { CloseIcon } from "@app/components/Icons"
+
 import type { ModalProps } from "./Modal.type"
 import { ModalPortal } from "./components"
 import { useAwayClickModal, useKeydownModal } from "./hooks"
@@ -41,7 +43,7 @@ const Modal = ({
                   className="absolute top-[0.8rem] right-[0.8rem] flex size-[3.2rem] cursor-pointer items-center justify-center rounded-[0.6rem] text-icon hover:bg-gray-bg"
                   whileTap={{ scale: 1.2 }}
                   aria-label="Close modal">
-                  ✕
+                  <CloseIcon size="1.6rem" />
                 </motion.button>
               )}
 
