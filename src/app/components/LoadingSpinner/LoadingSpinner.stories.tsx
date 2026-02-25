@@ -46,8 +46,7 @@ const meta = {
       control: "text",
     },
     color: {
-      description:
-        "스피너 색상. current는 부모의 color CSS 속성을 상속합니다",
+      description: "스피너 색상. current는 부모의 color CSS 속성을 상속합니다",
       control: "select",
       options: ["current", "white", "black", "primary"],
     },

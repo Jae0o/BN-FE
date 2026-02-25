@@ -1,10 +1,10 @@
-import { AnimatePresence, motion } from "motion/react"
+import { CloseIcon } from "@app/components/Icons";
 
-import { CloseIcon } from "@app/components/Icons"
+import type { ModalProps } from "./Modal.type";
+import { ModalPortal } from "./components";
+import { useAwayClickModal, useKeydownModal } from "./hooks";
 
-import type { ModalProps } from "./Modal.type"
-import { ModalPortal } from "./components"
-import { useAwayClickModal, useKeydownModal } from "./hooks"
+import { AnimatePresence, motion } from "motion/react";
 
 const Modal = ({
   children,
@@ -13,13 +13,13 @@ const Modal = ({
   hideCloseIcon = false,
   disableAwayClick = false,
 }: ModalProps) => {
-  const handleCloseModal = useAwayClickModal(onClose)
+  const handleCloseModal = useAwayClickModal(onClose);
 
   useKeydownModal({
     callback: onClose,
     isShow,
     disableAwayClick,
-  })
+  });
 
   return (
     <AnimatePresence>
@@ -53,7 +53,7 @@ const Modal = ({
         </ModalPortal>
       )}
     </AnimatePresence>
-  )
-}
+  );
+};
 
-export default Modal
+export default Modal;

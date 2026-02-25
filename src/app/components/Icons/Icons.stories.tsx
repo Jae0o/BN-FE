@@ -66,8 +66,11 @@ export const AllIcons: Story = {
     <div className="flex flex-wrap gap-6">
       <div className="flex flex-col items-center gap-2">
         <CloseIcon />
-        <span className="text-gray-500"
-          style={{ fontSize: "1.2rem" }}>CloseIcon</span>
+        <span
+          className="text-gray-500"
+          style={{ fontSize: "1.2rem" }}>
+          CloseIcon
+        </span>
       </div>
     </div>
   ),
@@ -81,23 +84,35 @@ export const Sizes: Story = {
     <div className="flex flex-wrap items-end gap-6">
       <div className="flex flex-col items-center gap-2">
         <CloseIcon size="1rem" />
-        <span className="text-gray-500"
-          style={{ fontSize: "1.2rem" }}>1rem</span>
+        <span
+          className="text-gray-500"
+          style={{ fontSize: "1.2rem" }}>
+          1rem
+        </span>
       </div>
       <div className="flex flex-col items-center gap-2">
         <CloseIcon size="1.5rem" />
-        <span className="text-gray-500"
-          style={{ fontSize: "1.2rem" }}>1.5rem (기본)</span>
+        <span
+          className="text-gray-500"
+          style={{ fontSize: "1.2rem" }}>
+          1.5rem (기본)
+        </span>
       </div>
       <div className="flex flex-col items-center gap-2">
         <CloseIcon size="2rem" />
-        <span className="text-gray-500"
-          style={{ fontSize: "1.2rem" }}>2rem</span>
+        <span
+          className="text-gray-500"
+          style={{ fontSize: "1.2rem" }}>
+          2rem
+        </span>
       </div>
       <div className="flex flex-col items-center gap-2">
         <CloseIcon size="3rem" />
-        <span className="text-gray-500"
-          style={{ fontSize: "1.2rem" }}>3rem</span>
+        <span
+          className="text-gray-500"
+          style={{ fontSize: "1.2rem" }}>
+          3rem
+        </span>
       </div>
     </div>
   ),
@@ -114,32 +129,44 @@ export const Colors: Story = {
           size="2rem"
           stroke="currentColor"
         />
-        <span className="text-gray-500"
-          style={{ fontSize: "1.2rem" }}>currentColor</span>
+        <span
+          className="text-gray-500"
+          style={{ fontSize: "1.2rem" }}>
+          currentColor
+        </span>
       </div>
       <div className="flex flex-col items-center gap-2">
         <CloseIcon
           size="2rem"
           stroke="#3b82f6"
         />
-        <span className="text-gray-500"
-          style={{ fontSize: "1.2rem" }}>#3b82f6</span>
+        <span
+          className="text-gray-500"
+          style={{ fontSize: "1.2rem" }}>
+          #3b82f6
+        </span>
       </div>
       <div className="flex flex-col items-center gap-2">
         <CloseIcon
           size="2rem"
           stroke="#ef4444"
         />
-        <span className="text-gray-500"
-          style={{ fontSize: "1.2rem" }}>#ef4444</span>
+        <span
+          className="text-gray-500"
+          style={{ fontSize: "1.2rem" }}>
+          #ef4444
+        </span>
       </div>
       <div className="flex flex-col items-center gap-2">
         <CloseIcon
           size="2rem"
           stroke="#22c55e"
         />
-        <span className="text-gray-500"
-          style={{ fontSize: "1.2rem" }}>#22c55e</span>
+        <span
+          className="text-gray-500"
+          style={{ fontSize: "1.2rem" }}>
+          #22c55e
+        </span>
       </div>
     </div>
   ),

@@ -1,35 +1,35 @@
-import { useEffect, useRef } from "react"
+import { useEffect, useRef } from "react";
 
-import type { UseKeydownModalProps } from "./useKeydownModal.type"
+import type { UseKeydownModalProps } from "./useKeydownModal.type";
 
 const useKeydownModal = ({
   callback,
   isShow,
   disableAwayClick,
 }: UseKeydownModalProps) => {
-  const callbackRef = useRef(callback)
+  const callbackRef = useRef(callback);
 
   useEffect(() => {
-    callbackRef.current = callback
-  }, [callback])
+    callbackRef.current = callback;
+  }, [callback]);
 
   useEffect(() => {
     if (!isShow || disableAwayClick) {
-      return
+      return;
     }
 
     const handleEvent = ({ key }: KeyboardEvent) => {
       if (key !== "Escape") {
-        return
+        return;
       }
 
-      callbackRef.current()
-    }
+      callbackRef.current();
+    };
 
-    window.addEventListener("keydown", handleEvent)
+    window.addEventListener("keydown", handleEvent);
 
-    return () => window.removeEventListener("keydown", handleEvent)
-  }, [disableAwayClick, isShow])
-}
+    return () => window.removeEventListener("keydown", handleEvent);
+  }, [disableAwayClick, isShow]);
+};
 
-export default useKeydownModal
+export default useKeydownModal;

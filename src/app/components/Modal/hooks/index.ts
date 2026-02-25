@@ -1,2 +1,2 @@
-export * from "./useAwayClickModal"
-export * from "./useKeydownModal"
+export * from "./useAwayClickModal";
+export * from "./useKeydownModal";

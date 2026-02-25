@@ -1,7 +1,7 @@
-export type LoadingSpinnerColor = "current" | "white" | "black" | "primary"
+export type LoadingSpinnerColor = "current" | "white" | "black" | "primary";
 
 export interface LoadingSpinnerProps {
-  size?: string
-  weight?: string
-  color?: LoadingSpinnerColor
+  size?: string;
+  weight?: string;
+  color?: LoadingSpinnerColor;
 }

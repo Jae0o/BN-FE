@@ -1,7 +1,7 @@
-import { Outlet } from 'react-router-dom'
+import { Outlet } from "react-router-dom";
 
 const GlobalLayout = () => {
-  return <Outlet />
-}
+  return <Outlet />;
+};
 
-export default GlobalLayout
+export default GlobalLayout;

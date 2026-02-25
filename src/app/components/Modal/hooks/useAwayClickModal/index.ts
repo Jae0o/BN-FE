@@ -1,1 +1,1 @@
-export { default as useAwayClickModal } from "./useAwayClickModal"
+export { default as useAwayClickModal } from "./useAwayClickModal";

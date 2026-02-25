@@ -1,1 +1,1 @@
-export type UseAwayClickModalProps = () => void
+export type UseAwayClickModalProps = () => void;

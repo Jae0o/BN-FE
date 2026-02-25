@@ -1,15 +1,15 @@
-import type { UseAwayClickModalProps } from "./useAwayClickModal.type"
+import type { UseAwayClickModalProps } from "./useAwayClickModal.type";
 
 const useAwayClickModal = (onClose: UseAwayClickModalProps) => {
   const handleCloseModal = (event: React.MouseEvent) => {
     if (event.target !== event.currentTarget) {
-      return
+      return;
     }
 
-    onClose()
-  }
+    onClose();
+  };
 
-  return handleCloseModal
-}
+  return handleCloseModal;
+};
 
-export default useAwayClickModal
+export default useAwayClickModal;

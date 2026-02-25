@@ -1,1 +1,1 @@
-export { default as useKeydownModal } from "./useKeydownModal"
+export { default as useKeydownModal } from "./useKeydownModal";

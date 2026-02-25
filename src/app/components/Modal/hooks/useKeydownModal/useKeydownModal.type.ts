@@ -1,5 +1,5 @@
 export interface UseKeydownModalProps {
-  isShow: boolean
-  callback: () => void
-  disableAwayClick?: boolean
+  isShow: boolean;
+  callback: () => void;
+  disableAwayClick?: boolean;
 }

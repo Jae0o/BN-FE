@@ -1,3 +1,3 @@
 export interface UseModalParams {
-  defaultVisible?: boolean
+  defaultVisible?: boolean;
 }

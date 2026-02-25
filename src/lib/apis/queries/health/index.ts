@@ -1,1 +1,1 @@
-export * from "./useHealthCheckQuery"
+export * from "./useHealthCheckQuery";

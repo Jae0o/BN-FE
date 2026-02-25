@@ -1,9 +1,9 @@
-import type { ReactNode } from "react"
+import type { ReactNode } from "react";
 
 export interface ModalProps {
-  children: ReactNode
-  isShow: boolean
-  onClose: () => void
-  disableAwayClick?: boolean
-  hideCloseIcon?: boolean
+  children: ReactNode;
+  isShow: boolean;
+  onClose: () => void;
+  disableAwayClick?: boolean;
+  hideCloseIcon?: boolean;
 }

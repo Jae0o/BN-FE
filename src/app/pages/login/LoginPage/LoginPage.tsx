@@ -1,11 +1,9 @@
-import { useModal } from "@lib/hooks"
-
-import { SignupModal } from "@app/containers"
-
-import { Button } from "@app/components/Button"
+import { Button } from "@app/components/Button";
+import { SignupModal } from "@app/containers";
+import { useModal } from "@lib/hooks";
 
 const LoginPage = () => {
-  const [isShow, openModal, closeModal] = useModal()
+  const [isShow, openModal, closeModal] = useModal();
 
   return (
     <div>
@@ -22,7 +20,7 @@ const LoginPage = () => {
         onClose={closeModal}
       />
     </div>
-  )
-}
+  );
+};
 
-export default LoginPage
+export default LoginPage;

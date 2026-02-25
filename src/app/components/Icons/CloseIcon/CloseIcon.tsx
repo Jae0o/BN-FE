@@ -1,4 +1,4 @@
-import type { IconCommonProps } from "../icon.type"
+import type { IconCommonProps } from "../icon.type";
 
 const CloseIcon = ({
   size = "1.5rem",
@@ -22,7 +22,7 @@ const CloseIcon = ({
         strokeLinejoin="round"
       />
     </svg>
-  )
-}
+  );
+};
 
-export default CloseIcon
+export default CloseIcon;
