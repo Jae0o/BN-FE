@@ -68,9 +68,7 @@ const SignupModal = ({ isShow, onClose }: SignupModalProps) => {
             />
 
             {errors.email?.message && (
-              <p className="text-[1.2rem] text-error">
-                {errors.email.message}
-              </p>
+              <p className="text-[1.2rem] text-error">{errors.email.message}</p>
             )}
           </div>
 
@@ -133,8 +131,8 @@ const SignupModal = ({ isShow, onClose }: SignupModalProps) => {
           type="submit"
           variant="primary"
           className="w-full"
-          disabled={isPending}>
-          {isPending ? "가입 중..." : "가입"}
+          isLoading={isPending}>
+          가입
         </Button>
       </form>
     </Modal>
