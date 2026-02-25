@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+html {
+  font-size: 62.5%;
+}
+
 @theme {
   --color-primary: #3b82f6;
   --color-primary-light: #f6eaff;
