@@ -1,1 +1,1 @@
-export { default as GlobalLayout } from './GlobalLayout/GlobalLayout'
+export * from "./GlobalLayout"

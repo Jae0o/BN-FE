@@ -1,1 +1,1 @@
-export { default as useHealthCheckQuery } from "./useHealthCheckQuery/useHealthCheckQuery";
+export * from "./useHealthCheckQuery"
