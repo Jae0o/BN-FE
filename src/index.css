@@ -23,4 +23,15 @@ html {
   --color-icon: #555;
 
   --color-error: #d32f2f;
+
+  --animate-loading-spinner: loading-spinner 1s infinite ease;
+}
+
+@keyframes loading-spinner {
+  from {
+    transform: rotate(0turn);
+  }
+  to {
+    transform: rotate(1turn);
+  }
 }
