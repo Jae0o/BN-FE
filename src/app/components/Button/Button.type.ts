@@ -10,5 +10,6 @@ export interface ButtonProps
   variant?: ButtonVariant
   size?: ButtonSize
   icon?: ReactNode
+  isLoading?: boolean
   children?: ReactNode
 }

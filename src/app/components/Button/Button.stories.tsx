@@ -25,6 +25,7 @@ import Button from "./Button";
  * | `variant` | `"primary" \| "secondary" \| "tertiary" \| "text"` | `"primary"` | 버튼 스타일 변형 |
  * | `size` | `"s" \| "m" \| "l"` | `"l"` | 버튼 크기 |
  * | `icon` | `ReactNode` | - | 버튼 좌측에 표시할 아이콘 (s 사이즈에서 무시됨) |
+ * | `isLoading` | `boolean` | `false` | 로딩 상태 (스피너 표시, 클릭 비활성화, variant 스타일 유지) |
  * | `disabled` | `boolean` | `false` | 버튼 비활성화 여부 |
  * | `children` | `ReactNode` | - | 버튼 텍스트 콘텐츠 |
  */
@@ -50,6 +51,11 @@ const meta = {
       description: "버튼 좌측에 표시할 아이콘 (s 사이즈에서 무시됨)",
       control: false,
     },
+    isLoading: {
+      description:
+        "로딩 상태 — 스피너 표시, 클릭 비활성화, variant 스타일 유지",
+      control: "boolean",
+    },
     disabled: {
       description: "버튼 비활성화 여부",
       control: "boolean",
@@ -66,6 +72,7 @@ const meta = {
   args: {
     variant: "primary",
     size: "l",
+    isLoading: false,
     disabled: false,
     children: "버튼",
   },
@@ -195,12 +202,77 @@ export const Disabled: Story = {
 };
 
 /**
- * Controls 패널에서 variant, size, disabled를 직접 조작해볼 수 있는 인터랙티브 스토리입니다.
+ * 로딩 중인 버튼입니다. 각 variant의 원래 스타일을 유지하면서 스피너가 표시됩니다.
+ */
+export const Loading: Story = {
+  render: () => (
+    <div className="flex flex-wrap items-center gap-4">
+      <Button
+        variant="primary"
+        isLoading>
+        Primary
+      </Button>
+      <Button
+        variant="secondary"
+        isLoading>
+        Secondary
+      </Button>
+      <Button
+        variant="tertiary"
+        isLoading>
+        Tertiary
+      </Button>
+      <Button
+        variant="text"
+        isLoading>
+        Text
+      </Button>
+    </div>
+  ),
+};
+
+/**
+ * 로딩 상태와 일반 상태를 나란히 비교할 수 있습니다.
+ */
+export const LoadingComparison: Story = {
+  render: () => (
+    <div
+      className="flex flex-col gap-6"
+      style={{ fontSize: "1.4rem" }}>
+      {(["primary", "secondary", "tertiary", "text"] as const).map(variant => (
+        <div
+          key={variant}
+          className="flex items-center gap-4">
+          <span
+            className="w-[8rem] text-text-secondary"
+            style={{ fontSize: "1.2rem" }}>
+            {variant}
+          </span>
+          <Button variant={variant}>기본</Button>
+          <Button
+            variant={variant}
+            isLoading>
+            로딩
+          </Button>
+          <Button
+            variant={variant}
+            disabled>
+            비활성
+          </Button>
+        </div>
+      ))}
+    </div>
+  ),
+};
+
+/**
+ * Controls 패널에서 variant, size, isLoading, disabled를 직접 조작해볼 수 있는 인터랙티브 스토리입니다.
  */
 export const Playground: Story = {
   args: {
     variant: "primary",
     size: "l",
+    isLoading: false,
     disabled: false,
     children: "버튼 텍스트",
   },
