@@ -1,4 +1,5 @@
 export * from './Button'
 export * from './Icons'
 export * from './layout'
+export * from './LoadingSpinner'
 export * from './Modal'
