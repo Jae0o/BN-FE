@@ -1,11 +1,8 @@
+import type { UR3Token } from "@lib/types";
+
 export interface UseRegisterRequest {
   email: string;
   password: string;
 }
 
-export interface UseRegisterResponse {
-  access_token: string;
-  refresh_token: string;
-  token_type: string;
-  expires_in: number;
-}
+export type UseRegisterResponse = UR3Token;
