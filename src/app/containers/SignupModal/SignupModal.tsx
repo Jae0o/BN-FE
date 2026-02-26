@@ -1,8 +1,10 @@
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 import { Button } from "@app/components/Button";
 import { Modal } from "@app/components/Modal";
 import { useRegisterMutation } from "@lib/apis/mutations";
+import { useAuthStore } from "@lib/stores";
 
 import type { SignupModalProps } from "./SignupModal.type";
 
@@ -13,6 +15,9 @@ interface SignupFormValues {
 }
 
 const SignupModal = ({ isShow, onClose }: SignupModalProps) => {
+  const navigate = useNavigate();
+  const { setTokens } = useAuthStore();
+
   const { mutate, isPending, error } = useRegisterMutation();
 
   const {
@@ -37,8 +42,10 @@ const SignupModal = ({ isShow, onClose }: SignupModalProps) => {
     }
 
     mutate(data, {
-      onSuccess: () => {
+      onSuccess: ({ access_token, refresh_token, expires_in }) => {
+        setTokens(access_token, refresh_token, expires_in);
         handleClose();
+        navigate("/");
       },
     });
   };
