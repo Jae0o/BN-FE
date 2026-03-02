@@ -8,6 +8,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 npm run dev              # 개발 서버 실행
 npm run build            # TypeScript 체크 + 프로덕션 빌드
 npm run lint             # ESLint 실행
+npm run format           # Prettier 포맷팅 (src/**/*.{ts,tsx})
 npm run preview          # 빌드된 결과물 미리보기
 npm run storybook        # Storybook 개발 서버 (포트 6006)
 npm run build-storybook  # Storybook 정적 빌드
@@ -28,7 +29,8 @@ src/
 │   │   ├── axios/     # Axios 인스턴스 (`api`로 export, timeout: 10초)
 │   │   ├── tanstack/  # React Query 설정 (staleTime: 5분, gcTime: 10분, retry: 1, refetchOnWindowFocus: false)
 │   │   ├── queries/   # Query 훅 (도메인별 폴더)
-│   │   └── mutations/ # Mutation 훅 (도메인별 폴더)
+│   │   ├── mutations/ # Mutation 훅 (도메인별 폴더)
+│   │   └── services/  # 훅이 아닌 비동기 함수 (도메인별 폴더, 예: refreshTokenAsync)
 │   ├── constants/     # 상수 (도메인별 폴더: time/ 등)
 │   ├── hooks/         # 커스텀 훅
 │   ├── stores/        # Zustand 스토어
@@ -41,7 +43,16 @@ src/
 │   └── router/        # React Router 설정 (createBrowserRouter, routes.tsx에서 라우트 정의)
 ```
 
-**App 부트스트랩**: `main.tsx` → `App.tsx`(QueryClientProvider + RouterProvider) → `routes.tsx`(GlobalLayout이 Outlet으로 감싸는 구조)
+**App 부트스트랩**: `main.tsx` → `App.tsx`(QueryClientProvider + RouterProvider + useTokenRefresh) → `routes.tsx`(GlobalLayout이 Outlet으로 감싸는 구조)
+
+## Auth Flow
+
+인증은 여러 파일에 걸친 시스템으로 동작한다:
+
+1. **`useAuthStore`** (Zustand + `persist`): `accessToken`, `refreshToken`, `expiresAt` 관리. `refreshToken`과 `expiresAt`만 localStorage에 persist (`auth-storage` 키)
+2. **Axios interceptors** (`axiosInstance.ts`): 요청 시 Bearer 토큰 자동 첨부, 401 응답 시 자동 토큰 갱신 후 재요청
+3. **`useTokenRefresh`** (`App.tsx`에서 호출): 만료 60초 전 선제적 토큰 갱신. accessToken이 없으면 즉시 갱신 시도
+4. **Route guards** (`ProtectedRoute` / `PublicRoute`): `isAuthenticated` 상태로 라우트 접근 제어. 미인증 → `/login`, 인증 완료 → `/`로 리다이렉트
 
 ## CSS / rem 주의사항
 
@@ -73,6 +84,24 @@ src/
     └── hooks/                    # 내부 전용 훅 (필요시)
 ```
 
+### Icons 컴포넌트 (예외 구조)
+
+`Icons/`는 메인 `Icons.tsx` 없이 아이콘 컴포넌트들을 묶는 **도메인 그룹 폴더**이면서 PascalCase를 사용하는 예외 구조이다.
+
+```
+Icons/
+├── index.ts              # barrel export (각 아이콘 re-export)
+├── icon.type.ts          # 공통 Props (IconCommonProps)
+├── Icons.stories.tsx     # 전체 아이콘 카탈로그 Story
+└── {IconName}/
+    └── {IconName}.tsx    # 개별 아이콘 컴포넌트
+```
+
+- 메인 `Icons.tsx` 파일 없음 — 개별 아이콘을 직접 export
+- 공통 타입(`IconCommonProps`)은 `icon.type.ts`에 정의
+- Story는 폴더 루트에 `Icons.stories.tsx`로 전체 아이콘을 카탈로그 형태로 문서화
+- 새 아이콘 추가 시: `{IconName}/` 폴더 생성 → `{IconName}.tsx` 작성 → `index.ts`에 export 추가
+
 ### Query/Mutation Hook Structure (도메인별 폴더)
 
 ```
@@ -94,6 +123,19 @@ const domainKeys = {
 } as const
 export default domainKeys
 ```
+
+### Service Structure (도메인별 폴더)
+
+```
+services/
+└── {domain}/
+    ├── index.ts                          # barrel export
+    └── {functionName}/
+        ├── index.ts                      # barrel export
+        └── {functionName}.ts             # 비동기 함수 구현
+```
+
+- 훅이 아닌 순수 비동기 함수 (interceptor, 유틸리티 등에서 직접 호출)
 
 ### Barrel Export Pattern
 
