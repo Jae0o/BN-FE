@@ -26,9 +26,11 @@ const useNoteEditor = ({ noteNumber, onSaveSuccess }: UseNoteEditorParams) => {
   const { data: noteDetail } = useNoteDetailQuery({ noteNumber });
   const updateNoteMutation = useUpdateNoteMutation();
 
-  const { register, control, reset, getValues } = useForm<NoteEditorForm>({
+  const form = useForm<NoteEditorForm>({
     defaultValues: { title: "", content: "" },
   });
+
+  const { control, reset, getValues } = form;
 
   const [saveStatus, setSaveStatus] = useState<SaveStatus>("idle");
 
@@ -181,7 +183,7 @@ const useNoteEditor = ({ noteNumber, onSaveSuccess }: UseNoteEditorParams) => {
     };
   }, [noteNumber, getValues]);
 
-  return { register, control, saveStatus, flush };
+  return { form, saveStatus, flush };
 };
 
 export default useNoteEditor;
