@@ -1,1 +1,1 @@
-export type SourceType = "text" | "voice_stt" | "link";
+export type SourceType = "text" | "voice_stt" | "link" | "research";
