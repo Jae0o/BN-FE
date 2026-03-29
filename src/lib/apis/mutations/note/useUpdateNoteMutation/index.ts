@@ -1,1 +1,1 @@
-export { default as useUpdateNoteMutation } from "./useUpdateNoteMutation";
+export { default as useUpdateNoteMutation, updateNote } from "./useUpdateNoteMutation";
