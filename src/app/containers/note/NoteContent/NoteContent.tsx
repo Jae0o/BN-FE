@@ -1,18 +1,17 @@
 import { FormProvider } from "react-hook-form";
 
-import { useNoteDetailQuery } from "@lib/apis/queries";
 import { useNoteStream } from "@lib/hooks";
-import { useNoteStore } from "@lib/stores";
 
 import { NoteContentBody, NoteContentFooter, NoteContentHeader } from "./components";
 import { useNoteEditor } from "./hooks";
+import type { NoteContentProps } from "./NoteContent.type";
 
-const NoteContentView = ({ noteNumber }: { noteNumber: number }) => {
-  const { data: noteDetail } = useNoteDetailQuery({ noteNumber });
+const NoteContent = ({ noteNumber, noteDetail }: NoteContentProps) => {
   const { subscribe } = useNoteStream({ noteNumber, enabled: false });
 
   const { form, saveStatus } = useNoteEditor({
     noteNumber,
+    noteDetail,
     onSaveSuccess: subscribe,
   });
 
@@ -22,7 +21,7 @@ const NoteContentView = ({ noteNumber }: { noteNumber: number }) => {
 
   return (
     <FormProvider {...form}>
-      <article className="grow-1 flex h-full flex-col">
+      <article className="flex min-w-0 grow-1 h-full flex-col">
         <NoteContentHeader
           noteNumber={noteNumber}
           saveStatus={saveStatus}
@@ -32,31 +31,9 @@ const NoteContentView = ({ noteNumber }: { noteNumber: number }) => {
 
         <NoteContentBody />
 
-        <NoteContentFooter
-          noteNumber={noteNumber}
-          attachmentCount={attachmentCount}
-        />
+        <NoteContentFooter attachmentCount={attachmentCount} />
       </article>
     </FormProvider>
-  );
-};
-
-const NoteContent = () => {
-  const selectedNoteNumber = useNoteStore(state => state.selectedNoteNumber);
-
-  if (selectedNoteNumber === 0) {
-    return (
-      <div className="flex flex-1 items-center justify-center">
-        <p className="text-[1.4rem] text-[var(--color-text-help)]">노트를 선택해주세요</p>
-      </div>
-    );
-  }
-
-  return (
-    <NoteContentView
-      key={selectedNoteNumber}
-      noteNumber={selectedNoteNumber}
-    />
   );
 };
 

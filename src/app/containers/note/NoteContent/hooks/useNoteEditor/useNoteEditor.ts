@@ -2,7 +2,6 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useForm, useWatch } from "react-hook-form";
 
 import { updateNote, useUpdateNoteMutation } from "@lib/apis/mutations";
-import { useNoteDetailQuery } from "@lib/apis/queries";
 import { SECOND } from "@lib/constants";
 
 import type { NoteEditorForm, SaveStatus, UseNoteEditorParams } from "./useNoteEditor.type";
@@ -19,11 +18,10 @@ const MAX_UNSAVED_ENTRIES = 20;
  */
 const unsavedEditsMap = new Map<number, { title: string; content: string }>();
 
-const useNoteEditor = ({ noteNumber, onSaveSuccess }: UseNoteEditorParams) => {
+const useNoteEditor = ({ noteNumber, noteDetail, onSaveSuccess }: UseNoteEditorParams) => {
   // ──────────────────────────────────────────────
   // 1. 데이터 소스 & 폼
   // ──────────────────────────────────────────────
-  const { data: noteDetail } = useNoteDetailQuery({ noteNumber });
   const updateNoteMutation = useUpdateNoteMutation();
 
   const form = useForm<NoteEditorForm>({
@@ -145,8 +143,8 @@ const useNoteEditor = ({ noteNumber, onSaveSuccess }: UseNoteEditorParams) => {
     }
 
     unsavedEditsMap.set(noteNumber, { title, content });
-    scheduleSave(title, content);
-  }, [title, content, noteNumber, scheduleSave]);
+    scheduleRef.current?.(title, content);
+  }, [title, content, noteNumber]);
 
   // ──────────────────────────────────────────────
   // 7. flushUnsaved: 미저장 내용 즉시 fire-and-forget 전송
