@@ -3,11 +3,14 @@ import { formatRelativeTime } from "@lib/utils";
 import type { NotePanelItemProps } from "./NotePanelItem.type";
 import { NotePanelItemTags } from "./components";
 
-const NotePanelItem = ({ note, onPin, onDelete }: NotePanelItemProps) => {
+const NotePanelItem = ({ note, isActive, onSelect, onPin, onDelete }: NotePanelItemProps) => {
   const { note_number, title, tags, is_pinned, created_at } = note;
 
   return (
-    <article className="group px-[1.2rem] py-[1rem] flex cursor-pointer flex-col gap-[0.4rem] rounded-[0.8rem] hover:bg-[var(--color-gray-bg)]">
+    <article
+      className={`group flex cursor-pointer flex-col gap-[0.4rem] rounded-[0.8rem] px-[1.2rem] py-[1rem] hover:bg-[var(--color-gray-bg)] ${isActive ? "bg-[var(--color-gray-bg)]" : ""}`}
+      onClick={() => onSelect(note_number)}
+    >
       <div className="flex items-center gap-[0.6rem]">
         <button
           type="button"

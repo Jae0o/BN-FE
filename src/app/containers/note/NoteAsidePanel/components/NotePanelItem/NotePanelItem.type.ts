@@ -11,6 +11,9 @@ export interface NotePanelItemDeleteParams {
 
 export interface NotePanelItemProps {
   note: NoteListItem;
+  isActive: boolean;
+
+  onSelect: (noteNumber: number) => void;
   onPin: (params: NotePanelItemPinParams) => void;
   onDelete: (params: NotePanelItemDeleteParams) => void;
 }

@@ -6,6 +6,7 @@ import {
 } from "@lib/apis/mutations";
 import { useNotesInfiniteQuery, useNotesQuery } from "@lib/apis/queries";
 import { useIntersectionObserver } from "@lib/hooks";
+import { useNoteStore } from "@lib/stores";
 
 import { NotePanelItem } from "./components";
 import { useNoteSearch } from "./hooks";
@@ -13,6 +14,8 @@ import { useNoteSearch } from "./hooks";
 const PAGE_LIMIT = 10;
 
 const NoteAsidePanel = () => {
+  const { selectedNoteNumber, selectNote } = useNoteStore();
+
   const createNote = useCreateNoteMutation();
   const deleteNote = useDeleteNoteMutation();
   const pinNote = usePinNoteMutation();
@@ -76,10 +79,13 @@ const NoteAsidePanel = () => {
             <h3 className="px-[1.2rem] py-[0.8rem] text-[1.2rem] font-semibold text-[var(--color-text-secondary)]">
               Pin
             </h3>
+
             {pinnedNotes.map(note => (
               <NotePanelItem
                 key={note.note_number}
                 note={note}
+                isActive={note.note_number === selectedNoteNumber}
+                onSelect={selectNote}
                 onPin={pinNote.mutate}
                 onDelete={deleteNote.mutate}
               />
@@ -100,6 +106,8 @@ const NoteAsidePanel = () => {
             <NotePanelItem
               key={note.note_number}
               note={note}
+              isActive={note.note_number === selectedNoteNumber}
+              onSelect={selectNote}
               onPin={pinNote.mutate}
               onDelete={deleteNote.mutate}
             />
