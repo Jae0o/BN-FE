@@ -4,5 +4,6 @@ export * from "./actionType.type";
 export * from "./noteDetail.type";
 export * from "./noteListItem.type";
 export * from "./processingStatus.type";
+export * from "./relatedNote.type";
 export * from "./researchStatus.type";
 export * from "./sourceType.type";

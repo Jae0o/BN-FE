@@ -11,6 +11,10 @@ const noteKeys = {
 
   details: [...all, "detail"] as const,
   detail: (noteNumber: number) => [...all, "detail", noteNumber] as const,
+
+  actions: (noteNumber: number) => [...all, "actions", noteNumber] as const,
+
+  related: (noteNumber: number) => [...all, "related", noteNumber] as const,
 } as const;
 
 export default noteKeys;
