@@ -1,10 +1,11 @@
-import { NoteAsidePanel } from "@app/containers";
+import { NoteAsidePanel, NoteContent } from "@app/containers";
 
 const NotePage = () => {
   return (
     <div className="flex h-full">
       <NoteAsidePanel />
-      content
+      <NoteContent />
+      {/* NoteInfoPanel */}
     </div>
   );
 };
