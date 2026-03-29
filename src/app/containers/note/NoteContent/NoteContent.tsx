@@ -22,7 +22,7 @@ const NoteContentView = ({ noteNumber }: { noteNumber: number }) => {
 
   return (
     <FormProvider {...form}>
-      <article className="flex h-full flex-col">
+      <article className="grow-1 flex h-full flex-col">
         <NoteContentHeader
           noteNumber={noteNumber}
           saveStatus={saveStatus}

@@ -77,6 +77,7 @@ const useNoteEditor = ({ noteNumber, onSaveSuccess }: UseNoteEditorParams) => {
         {
           noteNumber,
           title: saveTitle || null,
+          // COMMENT-JY : 빈 content를 공백(" ")으로 전송: API가 빈 문자열을 허용하지 않음
           content: saveContent || " ",
         },
         {
@@ -148,8 +149,21 @@ const useNoteEditor = ({ noteNumber, onSaveSuccess }: UseNoteEditorParams) => {
   }, [title, content, noteNumber, scheduleSave]);
 
   // ──────────────────────────────────────────────
-  // 7. flush: 노트 전환 시 외부에서 호출
-  //    디바운스 타이머 취소 + 미저장 내용 즉시 fire-and-forget 전송
+  // 7. flushUnsaved: 미저장 내용 즉시 fire-and-forget 전송
+  //    flush(외부 호출)와 cleanup(언마운트) 양쪽에서 재사용
+  // ──────────────────────────────────────────────
+  const flushUnsaved = useCallback(() => {
+    if (!unsavedEditsMap.has(noteNumber)) return;
+
+    const { title: t, content: c } = getValues();
+    // 빈 content를 공백(" ")으로 전송: API가 빈 문자열을 허용하지 않음
+    updateNote({ noteNumber, title: t || null, content: c || " " });
+    unsavedEditsMap.delete(noteNumber);
+  }, [noteNumber, getValues]);
+
+  // ──────────────────────────────────────────────
+  // 8. flush: 노트 전환 시 외부에서 호출
+  //    디바운스 타이머 취소 + flushUnsaved
   // ──────────────────────────────────────────────
   const flush = useCallback(() => {
     if (timerRef.current) {
@@ -157,16 +171,11 @@ const useNoteEditor = ({ noteNumber, onSaveSuccess }: UseNoteEditorParams) => {
       timerRef.current = null;
     }
 
-    if (unsavedEditsMap.has(noteNumber)) {
-      const { title: t, content: c } = getValues();
-
-      updateNote({ noteNumber, title: t || null, content: c || " " });
-      unsavedEditsMap.delete(noteNumber);
-    }
-  }, [noteNumber, getValues]);
+    flushUnsaved();
+  }, [flushUnsaved]);
 
   // ──────────────────────────────────────────────
-  // 8. 언마운트 cleanup: 타이머 정리 + 미저장 내용 fire-and-forget 전송
+  // 9. 언마운트 cleanup: 타이머 정리 + flushUnsaved
   //    key={noteNumber}로 리마운트되므로 노트 전환 시에도 실행됨
   // ──────────────────────────────────────────────
   useEffect(() => {
@@ -174,14 +183,9 @@ const useNoteEditor = ({ noteNumber, onSaveSuccess }: UseNoteEditorParams) => {
       if (timerRef.current) clearTimeout(timerRef.current);
       if (savedTimerRef.current) clearTimeout(savedTimerRef.current);
 
-      if (unsavedEditsMap.has(noteNumber)) {
-        const { title: t, content: c } = getValues();
-
-        updateNote({ noteNumber, title: t || null, content: c || " " });
-        unsavedEditsMap.delete(noteNumber);
-      }
+      flushUnsaved();
     };
-  }, [noteNumber, getValues]);
+  }, [flushUnsaved]);
 
   return { form, saveStatus, flush };
 };
