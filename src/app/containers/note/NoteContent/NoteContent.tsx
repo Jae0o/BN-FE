@@ -1,18 +1,14 @@
 import { FormProvider } from "react-hook-form";
 
-import { useNoteStream } from "@lib/hooks";
-
 import type { NoteContentProps } from "./NoteContent.type";
 import { NoteContentBody, NoteContentFooter, NoteContentHeader } from "./components";
 import { useNoteEditor } from "./hooks";
 
-const NoteContent = ({ noteNumber, noteDetail }: NoteContentProps) => {
-  const { subscribe } = useNoteStream({ noteNumber, enabled: false });
-
+const NoteContent = ({ noteNumber, noteDetail, onSaveSuccess }: NoteContentProps) => {
   const { form, saveStatus } = useNoteEditor({
     noteNumber,
     noteDetail,
-    onSaveSuccess: subscribe,
+    onSaveSuccess,
   });
 
   const processingStatus = noteDetail?.processing_status ?? "pending";

@@ -3,7 +3,7 @@ import { useNoteActionsQuery, useRelatedNotesQuery } from "@lib/apis/queries";
 import type { NoteInfoPanelProps } from "./NoteInfoPanel.type";
 import { NoteInfoPanelProcessing, NoteInfoPanelRelated, NoteInfoPanelSource } from "./components";
 
-const NoteInfoPanel = ({ noteNumber, noteDetail }: NoteInfoPanelProps) => {
+const NoteInfoPanel = ({ noteNumber, noteDetail, streamPhase }: NoteInfoPanelProps) => {
   const { data: noteActions } = useNoteActionsQuery({ noteNumber });
   const { data: relatedData } = useRelatedNotesQuery({ noteNumber, limit: 5 });
 
@@ -16,6 +16,7 @@ const NoteInfoPanel = ({ noteNumber, noteDetail }: NoteInfoPanelProps) => {
       <NoteInfoPanelProcessing
         noteNumber={noteNumber}
         processingStatus={processingStatus}
+        streamPhase={streamPhase}
         summary={noteDetail?.summary ?? undefined}
       />
 
