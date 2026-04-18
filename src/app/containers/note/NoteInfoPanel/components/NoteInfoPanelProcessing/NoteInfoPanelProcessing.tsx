@@ -11,12 +11,15 @@ import type { NoteInfoPanelProcessingProps } from "./NoteInfoPanelProcessing.typ
 const NoteInfoPanelProcessing = ({
   noteNumber,
   processingStatus,
+  streamPhase,
   summary,
 }: NoteInfoPanelProcessingProps) => {
   const reprocess = useReprocessNoteMutation();
 
-  const stepIndex = PROCESSING_STEP_MAP[processingStatus] ?? 0;
-  const isFailed = processingStatus === "failed";
+  // COMMENT-JY : 스트림이 활성화되어 있으면 stream phase를 우선, 아니면 서버 저장 상태로 폴백
+  const effectivePhase = streamPhase !== "idle" ? streamPhase : processingStatus;
+  const stepIndex = PROCESSING_STEP_MAP[effectivePhase] ?? 0;
+  const isFailed = effectivePhase === "failed";
 
   return (
     <section className="flex flex-col gap-[1.2rem] border-b border-[var(--color-divider-lighter)] px-[2rem] py-[1.6rem]">
@@ -31,7 +34,7 @@ const NoteInfoPanelProcessing = ({
               : "bg-[var(--color-gray-bg)] text-[var(--color-text-secondary)]"
         }`}
       >
-        {PROCESSING_LABEL[processingStatus] ?? processingStatus}
+        {PROCESSING_LABEL[effectivePhase] ?? effectivePhase}
       </span>
 
       <div className="flex gap-[0.4rem]">
