@@ -1,6 +1,6 @@
 import { useFormContext } from "react-hook-form";
 
-import { LoadingSpinner } from "@app/components";
+import { LoadingSpinner } from "@shared/ui";
 
 import type { NoteEditorForm } from "../../hooks/useNoteEditor/useNoteEditor.type";
 import type { NoteContentHeaderProps } from "./NoteContentHeader.type";

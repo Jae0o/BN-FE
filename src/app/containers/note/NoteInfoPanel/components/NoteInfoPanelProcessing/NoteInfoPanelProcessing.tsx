@@ -1,4 +1,4 @@
-import { LoadingSpinner } from "@app/components";
+import { LoadingSpinner } from "@shared/ui";
 import { useReprocessNoteMutation } from "@lib/apis/mutations";
 
 import {

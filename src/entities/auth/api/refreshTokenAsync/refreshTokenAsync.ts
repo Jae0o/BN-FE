@@ -1,4 +1,4 @@
-import { api } from "@lib/apis/axios";
+import { api } from "@shared/api/axios";
 
 import type { UR3Token } from "../../model";
 

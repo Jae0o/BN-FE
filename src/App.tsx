@@ -2,7 +2,7 @@ import { RouterProvider } from "react-router-dom";
 
 import { router } from "@app/router";
 import { useTokenRefresh } from "@features/auth/refresh-token";
-import { queryClient } from "@lib/apis";
+import { queryClient } from "@shared/api/tanstack";
 import { QueryClientProvider } from "@tanstack/react-query";
 
 const App = () => {

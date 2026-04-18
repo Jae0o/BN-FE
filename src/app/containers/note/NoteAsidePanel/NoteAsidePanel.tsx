@@ -1,11 +1,11 @@
-import { Button, LoadingSpinner } from "@app/components";
+import { Button, LoadingSpinner } from "@shared/ui";
 import {
   useCreateNoteMutation,
   useDeleteNoteMutation,
   usePinNoteMutation,
 } from "@lib/apis/mutations";
 import { useNotesInfiniteQuery, useNotesQuery } from "@lib/apis/queries";
-import { useIntersectionObserver } from "@lib/hooks";
+import { useIntersectionObserver } from "@shared/hooks";
 import { useNoteStore } from "@lib/stores";
 
 import { NotePanelItem } from "./components";

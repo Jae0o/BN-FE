@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { api } from "../../../axios";
+import { api } from "@shared/api/axios";
 import noteKeys from "../keys";
 import type { UseNoteActionsParams, UseNoteActionsResponse } from "./useNoteActionsQuery.type";
 

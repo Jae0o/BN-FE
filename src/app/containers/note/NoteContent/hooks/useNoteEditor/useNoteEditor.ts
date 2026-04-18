@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useForm, useWatch } from "react-hook-form";
 
 import { updateNote, useUpdateNoteMutation } from "@lib/apis/mutations";
-import { SECOND } from "@lib/constants";
+import { SECOND } from "@shared/constants";
 
 import type { NoteEditorForm, SaveStatus, UseNoteEditorParams } from "./useNoteEditor.type";
 

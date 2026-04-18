@@ -1,4 +1,4 @@
-import { formatRelativeTime } from "@lib/utils";
+import { formatRelativeTime } from "@shared/lib/time";
 
 import type { NotePanelItemProps } from "./NotePanelItem.type";
 import { NotePanelItemTags } from "./components";

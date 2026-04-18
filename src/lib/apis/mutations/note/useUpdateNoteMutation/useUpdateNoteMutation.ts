@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { api } from "../../../axios";
+import { api } from "@shared/api/axios";
 import noteKeys from "../../../queries/note/keys";
 import type { UseUpdateNoteRequest, UseUpdateNoteResponse } from "./useUpdateNoteMutation.type";
 

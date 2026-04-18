@@ -1,4 +1,4 @@
-import { api } from "@lib/apis/axios";
+import { api } from "@shared/api/axios";
 import { useMutation } from "@tanstack/react-query";
 
 import type { UseRegisterRequest, UseRegisterResponse } from "./useRegisterMutation.type";

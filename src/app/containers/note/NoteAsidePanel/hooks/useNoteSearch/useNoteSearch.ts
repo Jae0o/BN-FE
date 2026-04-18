@@ -1,6 +1,6 @@
 import { useForm, useWatch } from "react-hook-form";
 
-import { useSearchDebounce } from "@lib/hooks";
+import { useSearchDebounce } from "@shared/hooks";
 
 interface NoteSearchForm {
   search: string;

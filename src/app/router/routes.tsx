@@ -1,11 +1,15 @@
 import { Navigate } from "react-router-dom";
 import type { RouteObject } from "react-router-dom";
 
-import { GlobalLayout } from "@app/components";
-import { ChatPage, GraphPage, NotFoundPage, NotePage, TodoPage } from "@app/pages";
+import { GlobalLayout } from "@app/layouts";
+import { ChatPage } from "@pages/chat";
+import { GraphPage } from "@pages/graph";
 import { LoginPage } from "@pages/login";
+import { NotePage } from "@pages/note";
+import { NotFoundPage } from "@pages/notfound";
+import { TodoPage } from "@pages/todo";
 
-import { ProtectedRoute, PublicRoute } from "./provider";
+import { ProtectedRoute, PublicRoute } from "@app/providers";
 
 export const routes: RouteObject[] = [
   {

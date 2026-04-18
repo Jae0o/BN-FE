@@ -1,6 +1,6 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 
-import { api } from "../../../axios";
+import { api } from "@shared/api/axios";
 import noteKeys from "../keys";
 import type { UseNotesResponse } from "../useNotesQuery/useNotesQuery.type";
 import type { UseNotesInfiniteParams, UseNotesInfiniteRequest } from "./useNotesInfiniteQuery.type";
