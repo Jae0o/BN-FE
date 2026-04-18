@@ -20,8 +20,10 @@ const useReprocessNoteMutation = () => {
 
   return useMutation({
     mutationFn: reprocessNote,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: noteKeys.all });
+    onSuccess: (_data, variables) => {
+      queryClient.invalidateQueries({ queryKey: noteKeys.detail(variables.noteNumber) });
+      queryClient.invalidateQueries({ queryKey: noteKeys.actions(variables.noteNumber) });
+      queryClient.invalidateQueries({ queryKey: noteKeys.related(variables.noteNumber) });
     },
   });
 };

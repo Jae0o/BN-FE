@@ -17,8 +17,9 @@ const useRemoveTagsMutation = () => {
 
   return useMutation({
     mutationFn: removeTags,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: noteKeys.all });
+    onSuccess: (_data, variables) => {
+      queryClient.invalidateQueries({ queryKey: noteKeys.detail(variables.noteNumber) });
+      queryClient.invalidateQueries({ queryKey: noteKeys.lists });
     },
   });
 };

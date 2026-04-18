@@ -14,7 +14,7 @@ const useDeleteNoteMutation = () => {
   return useMutation({
     mutationFn: deleteNote,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: noteKeys.all });
+      queryClient.invalidateQueries({ queryKey: noteKeys.lists });
     },
   });
 };

@@ -18,7 +18,7 @@ const usePinNoteMutation = () => {
   return useMutation({
     mutationFn: pinNote,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: noteKeys.all });
+      queryClient.invalidateQueries({ queryKey: noteKeys.lists });
     },
   });
 };
