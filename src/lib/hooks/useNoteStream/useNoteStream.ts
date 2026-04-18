@@ -103,6 +103,7 @@ const useNoteStream = ({
   enabled = false,
 }: UseNoteStreamParams): UseNoteStreamReturn => {
   const [phase, setPhase] = useState<NoteStreamPhase>("idle");
+
   const abortRef = useRef<AbortController | null>(null);
   const queryClient = useQueryClient();
 
