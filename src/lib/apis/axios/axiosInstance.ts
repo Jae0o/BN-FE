@@ -1,7 +1,5 @@
+import { refreshTokenGuard, useAuthStore } from "@entities/auth";
 import { SECOND } from "@lib/constants";
-import { useAuthStore } from "@lib/stores";
-
-import { refreshTokenGuard } from "../services";
 
 import type { AxiosError } from "axios";
 import axios from "axios";

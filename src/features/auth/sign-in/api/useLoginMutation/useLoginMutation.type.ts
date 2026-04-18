@@ -1,4 +1,4 @@
-import type { UR3Token } from "@lib/types";
+import type { UR3Token } from "@entities/auth";
 
 export interface UseLoginRequest {
   email: string;

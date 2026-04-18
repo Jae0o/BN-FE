@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 
-import { refreshTokenGuard } from "@lib/apis";
-import { useAuthStore } from "@lib/stores";
+import { refreshTokenGuard, useAuthStore } from "@entities/auth";
 
 const REFRESH_BUFFER_SEC = 60;
 

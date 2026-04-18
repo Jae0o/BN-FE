@@ -3,8 +3,8 @@ import { useReprocessNoteMutation } from "@lib/apis/mutations";
 
 import {
   PROCESSING_LABEL,
-  PROCESSING_STEP_MAP,
   PROCESSING_STEPS,
+  PROCESSING_STEP_MAP,
 } from "./NoteInfoPanelProcessing.constants";
 import type { NoteInfoPanelProcessingProps } from "./NoteInfoPanelProcessing.type";
 
@@ -20,9 +20,7 @@ const NoteInfoPanelProcessing = ({
 
   return (
     <section className="flex flex-col gap-[1.2rem] border-b border-[var(--color-divider-lighter)] px-[2rem] py-[1.6rem]">
-      <h3 className="text-[1.4rem] font-semibold text-[var(--color-text-primary)]">
-        AI 처리 상태
-      </h3>
+      <h3 className="text-[1.4rem] font-semibold text-[var(--color-text-primary)]">AI 처리 상태</h3>
 
       <span
         className={`w-fit rounded-[0.6rem] px-[0.8rem] py-[0.2rem] text-[1.2rem] font-semibold ${

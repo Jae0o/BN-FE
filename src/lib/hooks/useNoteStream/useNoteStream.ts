@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
+import { useAuthStore } from "@entities/auth";
 import noteKeys from "@lib/apis/queries/note/keys";
-import { useAuthStore } from "@lib/stores";
 import type { NoteStreamPhase } from "@lib/types";
 import { useQueryClient } from "@tanstack/react-query";
 

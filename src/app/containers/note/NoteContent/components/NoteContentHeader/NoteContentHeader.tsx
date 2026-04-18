@@ -3,8 +3,8 @@ import { useFormContext } from "react-hook-form";
 import { LoadingSpinner } from "@app/components";
 
 import type { NoteEditorForm } from "../../hooks/useNoteEditor/useNoteEditor.type";
-import { NoteContentHeaderTags } from "./components";
 import type { NoteContentHeaderProps } from "./NoteContentHeader.type";
+import { NoteContentHeaderTags } from "./components";
 
 const PROCESSING_LABEL: Record<string, string> = {
   pending: "대기 중",

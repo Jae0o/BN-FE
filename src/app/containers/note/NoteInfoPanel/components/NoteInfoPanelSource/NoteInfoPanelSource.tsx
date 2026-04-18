@@ -24,15 +24,11 @@ const NoteInfoPanelSource = ({ noteDetail, actions }: NoteInfoPanelSourceProps) 
         )}
         <span>
           생성:{" "}
-          {noteDetail?.created_at
-            ? new Date(noteDetail.created_at).toLocaleDateString()
-            : "-"}
+          {noteDetail?.created_at ? new Date(noteDetail.created_at).toLocaleDateString() : "-"}
         </span>
         <span>
           수정:{" "}
-          {noteDetail?.updated_at
-            ? new Date(noteDetail.updated_at).toLocaleDateString()
-            : "-"}
+          {noteDetail?.updated_at ? new Date(noteDetail.updated_at).toLocaleDateString() : "-"}
         </span>
       </div>
 

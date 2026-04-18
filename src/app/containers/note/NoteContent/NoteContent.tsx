@@ -2,9 +2,9 @@ import { FormProvider } from "react-hook-form";
 
 import { useNoteStream } from "@lib/hooks";
 
+import type { NoteContentProps } from "./NoteContent.type";
 import { NoteContentBody, NoteContentFooter, NoteContentHeader } from "./components";
 import { useNoteEditor } from "./hooks";
-import type { NoteContentProps } from "./NoteContent.type";
 
 const NoteContent = ({ noteNumber, noteDetail }: NoteContentProps) => {
   const { subscribe } = useNoteStream({ noteNumber, enabled: false });

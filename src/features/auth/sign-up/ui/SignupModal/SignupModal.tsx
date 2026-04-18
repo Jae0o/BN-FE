@@ -2,9 +2,9 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
 import { Button, Modal } from "@app/components";
-import { useRegisterMutation } from "@lib/apis/mutations";
-import { useAuthStore } from "@lib/stores";
+import { useAuthStore } from "@entities/auth";
 
+import { useRegisterMutation } from "../../api";
 import type { SignupModalProps } from "./SignupModal.type";
 
 interface SignupFormValues {

@@ -1,6 +1,6 @@
+import { api } from "@lib/apis/axios";
 import { useMutation } from "@tanstack/react-query";
 
-import { api } from "../../../axios";
 import type { UseRegisterRequest, UseRegisterResponse } from "./useRegisterMutation.type";
 
 const register = async (data: UseRegisterRequest) => {

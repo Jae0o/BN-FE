@@ -2,7 +2,8 @@ import { Navigate } from "react-router-dom";
 import type { RouteObject } from "react-router-dom";
 
 import { GlobalLayout } from "@app/components";
-import { ChatPage, GraphPage, LoginPage, NotFoundPage, NotePage, TodoPage } from "@app/pages";
+import { ChatPage, GraphPage, NotFoundPage, NotePage, TodoPage } from "@app/pages";
+import { LoginPage } from "@pages/login";
 
 import { ProtectedRoute, PublicRoute } from "./provider";
 

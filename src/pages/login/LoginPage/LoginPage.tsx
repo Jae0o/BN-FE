@@ -2,10 +2,10 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
 import { Button } from "@app/components";
-import { SignupModal } from "@app/containers";
-import { useLoginMutation } from "@lib/apis/mutations";
+import { useAuthStore } from "@entities/auth";
+import { useLoginMutation } from "@features/auth/sign-in";
+import { SignupModal } from "@features/auth/sign-up";
 import { useModal } from "@lib/hooks";
-import { useAuthStore } from "@lib/stores";
 
 interface LoginFormValues {
   email: string;
